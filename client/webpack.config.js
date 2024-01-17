@@ -18,12 +18,49 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      
+      new HtmlWebpackPlugin({
+        template: './src/index.html', // path to html template
+        filename: 'index.html',
+        chunks: ['main'],
+      }),
+      new HtmlWebpackPlugin({
+        template: './src/install.html', //path to install html temp
+        filename: 'install.html',
+        chunks: ['install'],
+      }),
+      new WebpackPwaManifest({
+        name: 'Manifest',
+        description: 'PWAManifest',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'), // path to icon file
+            sizes: [96, 128, 192, 256, 384, 512],
+          },
+        ],
+      }),
+      new InjectManifest({
+        swSrc: './src/src-sw.js', //path to service worker file
+        exclude: [/\.map$/, /manifest.*\.html$/],
+      }),
     ],
 
     module: {
       rules: [
-        
+        {
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader'],
+        },
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
+            },
+          },
+        },
       ],
     },
   };
