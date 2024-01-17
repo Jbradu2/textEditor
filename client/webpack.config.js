@@ -19,12 +19,12 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html', // path to html template
+        template: './index.html', // path to html template
         filename: 'index.html',
         chunks: ['main'],
       }),
       new HtmlWebpackPlugin({
-        template: './src/install.html', //path to install html temp
+        template: './src/js/install.js', //path to install html temp
         filename: 'install.html',
         chunks: ['install'],
       }),
@@ -39,7 +39,7 @@ module.exports = () => {
         ],
       }),
       new InjectManifest({
-        swSrc: './src/src-sw.js', //path to service worker file
+        swSrc: './src-sw.js', //path to service worker file
         exclude: [/\.map$/, /manifest.*\.html$/],
       }),
     ],

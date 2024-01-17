@@ -23,7 +23,7 @@ export const putDb = async (content) => {
   console.log('Content added to the database:', content)
 };
 // TODO: Add logic for a method that gets all the content from the database
-export const getAllDb = async () => {
+export const getDb = async () => {
   console.log('GET all from the database');
   const db = await initdb();
   const tx = db.transaction('jate', 'readonly');
