@@ -11,7 +11,7 @@ module.exports = () => {
     mode: 'development',
     entry: {
       main: './src/js/index.js',
-      install: './src/js/install.js'
+    install:'./src/js/install.js'
     },
     output: {
       filename: '[name].bundle.js',
@@ -20,23 +20,27 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: './index.html', // path to html template
-        filename: 'Webpack Plugin',
+        title: 'jate',
     
       }),
 
       new WebpackPwaManifest({
-        name: 'Manifest',
-        description: 'PWAManifest',
+        inject: true,
+        name: 'textEditor',
+        description: 'Just Another Text Editor!',
+        start_url: '/',
+        publicPath: '/',
         icons: [
           {
             src: path.resolve('src/images/logo.png'), // path to icon file
             sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
           },
         ],
       }),
       new InjectManifest({
         swSrc: './src-sw.js', //path to service worker file
-        exclude: [/\.map$/, /manifest.*\.html$/],
+        swDest: 'src-sw.js',
       }),
     ],
 
