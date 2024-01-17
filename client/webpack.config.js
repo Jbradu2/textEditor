@@ -20,14 +20,10 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: './index.html', // path to html template
-        filename: 'index.html',
-        chunks: ['main'],
+        filename: 'Webpack Plugin',
+    
       }),
-      new HtmlWebpackPlugin({
-        template: './src/js/install.js', //path to install html temp
-        filename: 'install.html',
-        chunks: ['install'],
-      }),
+
       new WebpackPwaManifest({
         name: 'Manifest',
         description: 'PWAManifest',
